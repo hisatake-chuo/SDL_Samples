@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.13)
+project(project)
+
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(project  main.cpp
+                        SoundTest.cpp SoundTest.hpp
+                        ImageTest.cpp ImageTest.hpp
+                        FigureTest.cpp FigureTest.hpp
+                        TextTest.cpp TextTest.hpp
+                        SDLTest.cpp SDLTest.hpp)
+
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+find_package(SDL2 REQUIRED)
+find_package(SDL2_mixer REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_ttf REQUIRED)
+
+include_directories(${SDL2_INCLUDE_DIRS})
+message(${SDL2_INCLUDE_DIRS})
+
+target_link_libraries(project ${SDL2_LIBRARIES})
+target_link_libraries(project ${SDL2_TTF_LIBRARIES})
+target_link_libraries(project ${SDL2_IMAGE_LIBRARIES})
+target_link_libraries(project ${SDL2_MIXER_LIBRARIES})
